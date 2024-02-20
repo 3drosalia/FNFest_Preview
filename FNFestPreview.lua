@@ -1,4 +1,4 @@
-version_num="0.0.6"
+version_num="0.0.6 - Marie Edition"
 imgScale=480/1024
 diffNames={"Easy","Medium","Hard","Expert"}
 movequant=10
@@ -8,7 +8,7 @@ midiHash=""
 beatHash=""
 eventsHash=""
 trackSpeed=2
-inst=1
+inst=3 -- start on guitar
 diff=4
 pR={
 	{{60,63},{66,69}},
@@ -70,7 +70,7 @@ function findTrack(trackName)
 	return nil
 end
 
-gfx.clear = rgb2num(42, 0, 71)
+gfx.clear = rgb2num(35, 38, 52)
 gfx.init("FNFest Preview", 640, 480, 0, 200, 200)
 
 
@@ -281,14 +281,14 @@ function drawNotes()
 			if lift then gfxid=4 end 
 			if od then 
 				gfxid=gfxid+1 
-				gfx.r, gfx.g, gfx.b=1,.56,0
+				gfx.r, gfx.g, gfx.b=0.93, 0.62, 0.46
 			else
-				gfx.r, gfx.g, gfx.b=0.72,.3,1
+				gfx.r, gfx.g, gfx.b=0.79, 0.61, 0.90
 			end
 			if rend>rtime then
-				gfx.line(susx-1,susy,endx-1,endy)
-				gfx.line(susx,susy,endx,endy)
-				gfx.line(susx+1,susy,endx+1,endy)
+				gfx.line(susx-1,susy,endx-1,endy,1)
+				gfx.line(susx,susy,endx,endy,1)
+				gfx.line(susx+1,susy,endx+1,endy,1)
 			end
 			if invalidLift then gfxid=6 end
 			gfx.r, gfx.g, gfx.b=1,1,1
@@ -303,6 +303,9 @@ function drawBeats()
 		width=425
 	end
 	for i=curBeatLine,#beatLines do
+		gfx.r = 0.77
+		gfx.g = 0.81
+		gfx.b = 0.96
 		btime=beatLines[i][1]
 		if btime>curBeat+(4/trackSpeed) then break end
 		if curBeat>btime+2 then
@@ -314,10 +317,10 @@ function drawBeats()
 		sx=((gfx.w/2)-((width*(1-(nxm*rtime)))*beatScale))
 		ex=((gfx.w/2)+((width*(1-(nxm*rtime)))*beatScale))
 		y=gfx.h-(248*beatScale)-((nyoff*rtime)*beatScale)
-		gfx.line(sx,y,ex,y)
+		gfx.line(sx,y,ex,y,1)
 		if beatLines[i][2] then
-			gfx.line(sx+1,y-1,ex-1,y-1)
-			gfx.line(sx-1,y+1,ex+1,y+1)
+			gfx.line(sx+1,y-1,ex-1,y-1,1)
+			gfx.line(sx-1,y+1,ex+1,y+1,1)
 		end
 	end
 end
@@ -443,11 +446,15 @@ local function Main()
 	end
 	updateEvents()
 	updateMidi()
+	
 	updateBeatLines()
 	drawBeats()
 	drawNotes()
-	gfx.x,gfx.y=0,0
-	gfx.setfont(1, "Arial", 20)
+	gfx.r = 0.77
+	gfx.g = 0.81
+	gfx.b = 0.96
+	gfx.x,gfx.y=5,5
+	gfx.setfont(1, "Red Hat Display Black", 25)
 	gfx.drawstr(string.format(
 		[[%s %s
 		Note: %d/%d
@@ -465,11 +472,11 @@ local function Main()
 		trackSpeed,
 		offset
 	))
-	gfx.x,gfx.y=0,gfx.h-20
-	gfx.setfont(1, "Arial", 20)
+	gfx.x,gfx.y=5,gfx.h-20
+	gfx.setfont(1, "Red Hat Display Bold", 15)
 	gfx.drawstr(string.format("Version %s",version_num))
 	strx,stry=gfx.measurestr("Press F1 for controls")
-	gfx.x,gfx.y=gfx.w-strx,gfx.h-stry
+	gfx.x,gfx.y=gfx.w-strx-5,gfx.h-stry-5
 	gfx.drawstr("Press F1 for controls")
 	if showHelp then
 		gfx.mode=0
