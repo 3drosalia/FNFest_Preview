@@ -11,3 +11,8 @@ A ReaScript made to preview custom Fortnite Festival Charts
 7. Optionally, add a keybind, or use the Menu Editor to add the action to a menu
 8. Enjoy charting with the ability to properly view lifts!
    
+## Modified by Marie:
+Defaults to Expert Guitar
+Themed better for the eyes
+
+(Credit to NarrikSynthfox for the original codebase, I just changed some colors and made a simple QOL change)
