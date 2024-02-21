@@ -12,7 +12,8 @@ A ReaScript made to preview custom Fortnite Festival Charts
 8. Enjoy charting with the ability to properly view lifts!
    
 ## Modified by Marie:
-Defaults to Expert Guitar
-Themed better for the eyes
+Defaults to Expert Guitar    
+Themed better for the eyes    
+(requires Red Hat Display to be installed, check google fonts)
 
 (Credit to NarrikSynthfox for the original codebase, I just changed some colors and made a simple QOL change)
